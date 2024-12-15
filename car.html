@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Car Animation</title>
+    <style>
+        body {
+            margin: 0;
+            background: #87CEEB;
+            /* Sky blue background */
+            overflow: hidden;
+        }
+
+        .road {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            height: 200px;
+            background: #333;
+        }
+
+        .road .line {
+            position: absolute;
+            width: 70px;
+            height: 20px;
+        }
+
+        .road .line1 {
+            background: white;
+            bottom: 45px;
+            left: 0;
+        }
+
+        .road .line2 {
+            background: white;
+            bottom: 45px;
+            left: 15%;
+        }
+
+        .road .line3 {
+            background: white;
+            bottom: 45px;
+            left: 35%;
+        }
+
+        .road .line4 {
+            background: white;
+            bottom: 45px;
+            left: 55%;
+        }
+
+        .road .line5 {
+            background: white;
+            bottom: 45px;
+            left: 75%;
+        }
+
+        .road .line6 {
+            background: white;
+            bottom: 45px;
+            left: 95%;
+        }
+
+
+        .car {
+            position: absolute;
+            bottom: 80px;
+            left: -200px;
+            /* Start off-screen */
+            width: 200px;
+            height: 130px;
+            background: red;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .car .window {
+            position: absolute;
+            top: 20px;
+            width: 60px;
+            height: 40px;
+            background: lightblue;
+            border-radius: 5px;
+        }
+
+        .car .window.front {
+            right: 20px;
+        }
+
+        .car .window.back {
+            left: 20px;
+        }
+
+        .car .wheel {
+            width: 40px;
+            height: 40px;
+            /* background: black; */
+            border: 15px solid black;
+            background-color: beige;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .car .wheel.front {
+            right: 20px;
+            bottom: -30px;
+        }
+
+        .car .wheel.back {
+            left: 20px;
+            bottom: -30px;
+        }
+
+        .cloud {
+      position: absolute;
+      top: 20px;
+      background: white;
+      border-radius: 50%;
+    }
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+    }
+    .cloud.small {
+      width: 80px;
+      height: 50px;
+    }
+    .cloud.small::before {
+      width: 50px;
+      height: 50px;
+      top: -15px;
+      left: 15px;
+    }
+    .cloud.small::after {
+      width: 60px;
+      height: 40px;
+      top: 5px;
+      left: 40px;
+    }
+    .cloud.large {
+      width: 120px;
+      height: 70px;
+    }
+    .cloud.large::before {
+      width: 80px;
+      height: 80px;
+      top: -20px;
+      left: 20px;
+    }
+    .cloud.large::after {
+      width: 90px;
+      height: 60px;
+      top: 10px;
+      left: 50px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="road ">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+        <div class="line line4"></div>
+        <div class="line line5"></div>
+        <div class="line line6"></div>
+    </div>
+    <div class="car">
+        <div class="window back"></div>
+        <div class="window front"></div>
+        <div class="wheel back"></div>
+        <div class="wheel front"></div>
+    </div>
+    <div class="cloud small" style="left: 200px;"></div>
+    <div class="cloud large" style="left: 1000px;"></div>
+    <div class="cloud small" style="left: 800px;bottom: 200px;"></div>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

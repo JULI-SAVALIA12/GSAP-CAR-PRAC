@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Writing Text</title>
+  <style>
+    body {
+      margin: 0;
+      background: #87CEEB; /* Sky blue */
+      overflow: hidden;
+    }
+
+    .road {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      height: 200px;
+      background: #333;
+    }
+
+    .car-image {
+      position: absolute;
+      height: 40%;
+      width: 40%;
+      z-index: 99;
+      bottom: 120px; /* Slightly above the road */
+      left: -300px; /* Start off-screen */
+    }
+
+    .text {
+      position: absolute;
+      bottom: 180px; /* On the road */
+      left: 50px; /* Start position of text */
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      color: white;
+      opacity: 1; /* Ensure it's visible */
+      white-space: nowrap; /* Keep the text on one line */
+    }
+
+    .text span {
+      opacity: 0; /* Each letter hidden initially */
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="road"></div>
+  <img src="car.png" alt="Car" class="car-image">
+  <div class="text" id="animatedText">Hello, welcome to the road!</div>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    // Select elements
+    const car = document.querySelector('.car-image');
+    const text = document.querySelector('#animatedText');
+
+    // Split text into spans for letter-by-letter animation
+    const splitText = text.textContent.split('').map(letter => {
+      return `<span>${letter}</span>`;
+    }).join('');
+    text.innerHTML = splitText;
+
+    // Select all spans (letters)
+    const letters = text.querySelectorAll('span');
+
+    // GSAP timeline
+    const timeline = gsap.timeline();
+
+    // Car animation
+    timeline.to(car, {
+      x: window.innerWidth + 300, // Move car off-screen
+      duration: 7, // Match duration to writing
+      ease: "power1.inOut", // Smooth easing
+    });
+
+    // Animate text (letter by letter, after car passes)
+    letters.forEach((letter, index) => {
+      timeline.to(letter, {
+        opacity: 1, // Fade in the letter
+        duration: 0.2, // Time per letter
+        ease: "linear", // Simple animation
+      }, index * 0.15 + 0.5); // Delay each letter to match car's position
+    });
+  </script>
+</body>
+</html>
